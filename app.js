@@ -13,6 +13,8 @@ app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/img', express.static(__dirname + 'public/img'));
 
 require('./src/routes/home.routes')(app);
+require('./src/routes/blog.routes')(app);
+
 
 //Run Server
 app.listen(port, () => {
