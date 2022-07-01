@@ -6,6 +6,10 @@ const port = 5000;
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({
+    extended: false
+}))
+
 //Konfigurasi File Static
 app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));

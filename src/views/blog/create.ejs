@@ -28,7 +28,7 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <!-- Post preview-->
                         <h2>Tulis Karyamu</h2>
-                        <form id="">
+                        <form action="/blog" method="POST">
                             <div class="form-floating">
                                 <input class="form-control" name="title" type="text" placeholder="Masukkan Judul Artikel..." data-sb-validations="required" />
                                 <label for="title">Judul Artikel</label>
@@ -53,10 +53,6 @@
                                 </div>
                             </div>
                             <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
                             <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Submit</button>
                         </form>
