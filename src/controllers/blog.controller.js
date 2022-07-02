@@ -1,8 +1,18 @@
+const Article = require('../models/article.model');
+
 exports.create = (req, res) => {
     res.render('blog/create');
 };
-exports.store = (req, res) => {
-    let article = req.body;
-
-    res.json(article);
+exports.store = async (req, res) => {
+    let article = new Article({
+        title: req.body.title,
+        subtitle: req.body.subtitle,
+        content: req.body.content
+    });
+    try {
+        await article.save()
+        res.redirect('/');
+    } catch (e) {
+        res.redirect('/blog/create');
+    };
 };

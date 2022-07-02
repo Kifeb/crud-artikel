@@ -1,10 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 const port = 5000;
 
+//Setup MongoDB
+mongoose.connect('mongodb://localhost:27017/mbmenulis_blog');
+
+//Setup EJS
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+
 
 app.use(express.urlencoded({
     extended: false
