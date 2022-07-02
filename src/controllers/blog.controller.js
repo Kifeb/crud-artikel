@@ -17,6 +17,15 @@ exports.store = async (req, res) => {
     };
 };
 
-exports.show = (req, res) => {
-    res.render('blog/show');
-}
+exports.show = async (req, res) => {
+    try {
+        const id = req.params.id;
+        let article = await Article.findById(id);
+        res.render('blog/show', {
+            article,
+        });
+    } catch (e) {
+        res.redirect('/')
+    };
+
+};
