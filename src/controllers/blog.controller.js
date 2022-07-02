@@ -51,11 +51,17 @@ exports.update = async (req, res) => {
         article.subtitle = req.body.subtitle;
         article.content = req.body.content;
         await article.save()
-        
+
         res.redirect('/');
     } catch (e) {
         res.render('blog/edit', {
             article,
         })
     };
+};
+
+exports.delete = async (req, res) => {
+        const id = req.params.id;
+        await Article.findByIdAndDelete(id);
+        res.redirect('/');
 };

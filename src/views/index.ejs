@@ -37,6 +37,8 @@
                             pada September 24, 2022
                         </p>
                         <a href="/blog/<%= article.id %>/edit" class="btn btn-link text-info">Edit</a>
+                        <button class="btn btn-link text-danger" onclick="event.preventDefault(); document.getElementById('form-delete').submit()">Hapus</button>
+                        <form action="/blog/<%= article.id %>?_method=DELETE" id="form-delete" method="POST"></form>
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />
