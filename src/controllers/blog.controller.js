@@ -4,6 +4,7 @@ exports.create = (req, res) => {
     res.render('blog/create');
 };
 
+
 exports.store = async (req, res) => {
     let article = new Article({
         title: req.body.title,
@@ -63,5 +64,12 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
         const id = req.params.id;
         await Article.findByIdAndDelete(id);
-        res.redirect('/');
+        res.redirect('artikel');
+};
+
+exports.view = async (req, res) => {
+    let articles = await Article.find()
+    res.render('blog/artikel', {
+        data: articles
+    });
 };
