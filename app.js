@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 
 const app = express();
 const port = 5000;
@@ -15,6 +16,9 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({
     extended: false
 }))
+
+//Konfigurasi Method Override
+app.use(methodOverride('_method'));
 
 //Konfigurasi File Static
 app.use(express.static('public'));
