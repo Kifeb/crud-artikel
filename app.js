@@ -1,6 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const port = 5000;
@@ -12,10 +17,20 @@ mongoose.connect('mongodb://localhost:27017/mbmenulis_blog');
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-
 app.use(express.urlencoded({
     extended: false
-}))
+}));
+
+
+// app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+app.use(session({
+    cookie: { maxAge: 6000},
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 //Konfigurasi Method Override
 app.use(methodOverride('_method'));
@@ -29,6 +44,26 @@ app.use('/img', express.static(__dirname + 'public/img'));
 require('./src/routes/home.routes')(app);
 require('./src/routes/blog.routes')(app);
 
+const data = {
+    user: 'admin',
+    pass: 'admin'
+};
+
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+app.post('/login', (req, res) => {
+    let login = {
+        username: req.body.username,
+        password: req.body.password
+    }
+    if (login.username === data.user && login.password === data.pass) {
+        res.redirect('blog/artikel')
+    }else{
+        res.render('login');
+    }
+})
 
 //Run Server
 app.listen(port, () => {

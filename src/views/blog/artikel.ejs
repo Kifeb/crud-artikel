@@ -19,7 +19,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand text-black" href="/">MB Menulis</a>
+                <a class="navbar-brand text-light" href="/">MB Menulis</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -27,8 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Artikel</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/blog/create">Masuk</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Keluar</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,11 +35,12 @@
         <!-- Page Header-->
         <header class="masthead" style="background-color: pink;">
         <div class="container py-4 t-centar">
-            <h1>Daftar Artikel</h1>
+            <h1 class="text-primary">Daftar Artikel</h1>
         </div>
     </header>
         <!-- Main Content-->
-        <div class="container pb-4">
+        <div class="container px-4">
+            <button class="btn btn-success btn-lg pb-2 rounded mb-4"><a href="/blog/create" rel="noreferrer noopener" class="text-white">Tulis Artikel</a></button>
             <table class="table">
                 <thead>
                   <tr>
@@ -50,14 +50,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <% data.forEach((article, i) => { %>                  
+                    <% if (data.length === 0) { %>
+                        <tr>
+                            <td colspan="3">
+                                <div class="alert alert-danger" role="alert">
+                                    Artikel Masih Kosong <a href="/blog/create" class="text-black"><b>Tambah Disini</b></a>
+                                  </div>
+                            </td>
+                        </tr>
+                    <% } %>
+                    <% if (msg.length !== 0) { %>
+                        <div class="alert alert-success" role="alert">
+                            <%= msg %> 
+                          </div>
+                    <% } %>
+                    <% data.forEach((article, i) => { %>               
                         <tr>
                           <th scope="row"><%= i+1 %></th>
                           <td><%= article.title %></td>
                           <td>
-                            <a href="/blog/<%= article.id %>/edit" class="btn btn-link text-info">Edit</a>
-                            <button class="btn btn-link text-danger" onclick="event.preventDefault(); document.getElementById('form-delete').submit()">Hapus</button>
-                            <form action="/blog/<%= article.id %>?_method=DELETE" id="form-delete" method="POST"></form>
+                            <a href="/blog/<%= article.id %>/edit" class="btn btn-sm btn-primary rounded">Edit</a>
+                            <form action="/blog/<%= article.id %>?_method=DELETE" id="form-delete" method="POST"><button class="btn btn-sm btn-danger rounded" onclick="return confirm('Yakin mau dihapus ?')">Hapus</button></form>
                             </td>
                         </tr>
                     <% }) %>

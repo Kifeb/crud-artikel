@@ -5,10 +5,11 @@ module.exports = (app) => {
     router.get('/artikel', blog.view);
     router.get('/create', blog.create);
     router.post('/', blog.store);
-    router.get('/:id', blog.show);
+    router.get('/:title', blog.show);
     router.get('/:id/edit', blog.edit);
     router.patch('/:id', blog.update);
     router.delete('/:id', blog.delete);
+    
 
-    app.use('/blog', router)
+    app.use('/blog', router);
 };

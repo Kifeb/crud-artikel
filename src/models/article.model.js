@@ -13,6 +13,10 @@ const articleSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    userIg: {
+        required: false,
+        type: String,
+    },
 });
 
 module.exports = mongoose.model('Article', articleSchema);

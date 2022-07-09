@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Clean Blog - Start Bootstrap Theme</title>
+        <title>MB Menulis Bersama</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -29,6 +29,11 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <%- article.content %>
+                        <span class="lead d-block" style="padding-top: 40px;">
+                            ditulis oleh
+                            <a href="https://instagram.com/<%= article.userIg %>"><i><%= article.userIg %></i></a>
+                            pada <%= date %> 
+                        </span>
                     </div>
                 </div>
             </div>
