@@ -43,27 +43,33 @@ app.use('/img', express.static(__dirname + 'public/img'));
 
 require('./src/routes/home.routes')(app);
 require('./src/routes/blog.routes')(app);
+// require('./src/routes/register.routes')(app);
+// require('./src/routes/login.routes')(app);
 
-const data = {
-    user: 'admin',
-    pass: 'admin'
-};
 
-app.get('/login', (req, res) => {
-    res.render('login')
-})
 
-app.post('/login', (req, res) => {
-    let login = {
-        username: req.body.username,
-        password: req.body.password
-    }
-    if (login.username === data.user && login.password === data.pass) {
-        res.redirect('blog/artikel')
-    }else{
-        res.render('login');
-    }
-})
+
+
+// const data = {
+//     user: 'admin',
+//     pass: 'admin'
+// };
+
+// app.get('/login', (req, res) => {
+//     res.render('login')
+// })
+
+// app.post('/login', (req, res) => {
+//     let login = {
+//         username: req.body.username,
+//         password: req.body.password
+//     }
+//     if (login.username === data.user && login.password === data.pass) {
+//         res.redirect('blog/artikel')
+//     }else{
+//         res.render('login');
+//     }
+// })
 
 //Run Server
 app.listen(port, () => {
